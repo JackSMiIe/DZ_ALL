@@ -1,0 +1,52 @@
+{
+    "Led Zeppelin": [
+        "Led Zeppelin IV",
+        "Houses of the Holy",
+        "Physical Graffiti"
+    ],
+    "The Beatles": [
+        "Abbey Road",
+        "Sgt. Pepper's Lonely Hearts Club Band",
+        "Revolver"
+    ],
+    "Pink Floyd": [
+        "The Dark Side of the Moon",
+        "Wish You Were Here",
+        "The Wall"
+    ],
+    "Queen": [
+        "A Night at the Opera",
+        "News of the World",
+        "Innuendo"
+    ],
+    "AC/DC": [
+        "Back in Black",
+        "Highway to Hell",
+        "The Razors Edge"
+    ],
+    "Nirvana": [
+        "Nevermind",
+        "In Utero",
+        "Bleach"
+    ],
+    "Metallica": [
+        "Master of Puppets",
+        "Ride the Lightning",
+        "The Black Album"
+    ],
+    "The Rolling Stones": [
+        "Exile on Main St.",
+        "Let It Bleed",
+        "Sticky Fingers"
+    ],
+    "Guns N' Roses": [
+        "Appetite for Destruction",
+        "Use Your Illusion I",
+        "Use Your Illusion II"
+    ],
+    "Radiohead": [
+        "OK Computer",
+        "Kid A",
+        "In Rainbows"
+    ]
+}
