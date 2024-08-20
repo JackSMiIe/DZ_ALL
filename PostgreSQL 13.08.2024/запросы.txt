@@ -1,0 +1,60 @@
+CREATE TABLE vegetables (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    calories INT NOT NULL,
+    color VARCHAR(50),
+    description TEXT
+);
+
+CREATE TABLE fruits (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    calories INT NOT NULL,
+    color VARCHAR(50),
+    description TEXT
+);
+
+
+-- Заполнение таблицы vegetables (Овощи)
+INSERT INTO vegetables (name, calories, color, description) VALUES
+('Капуста', 25, 'зеленый', 'Полезна для снижения уровня гемоглобина.'),
+('Морковь', 41, 'оранжевый', 'Содержит много витамина А, полезна для зрения.'),
+('Свекла', 43, 'красный', 'Полезна для кроветворения и повышения гемоглобина.'),
+('Перец', 20, 'красный', 'Содержит много витаминов, низкокалорийный продукт.'),
+('Брокколи', 34, 'зеленый', 'Богата витаминами и минералами, полезна для здоровья.');
+
+-- Заполнение таблицы fruits (Фрукты)
+INSERT INTO fruits (name, calories, color, description) VALUES
+('Яблоко', 52, 'зеленый', 'Богато клетчаткой и витамином C.'),
+('Банан', 89, 'желтый', 'Высокое содержание калия, полезен для сердца.'),
+('Апельсин', 47, 'оранжевый', 'Содержит много витамина C, укрепляет иммунитет.'),
+('Клубника', 32, 'красный', 'Низкокалорийный фрукт, богат антиоксидантами.'),
+('Лимон', 29, 'желтый', 'Отличный источник витамина C, повышает иммунитет.');
+
+
+SELECT * FROM vegetables
+WHERE calories < 30;
+
+
+SELECT * FROM fruits
+WHERE calories BETWEEN 30 AND 50;
+
+SELECT * FROM vegetables
+WHERE name ILIKE '%капуста%';
+
+
+SELECT * FROM vegetables
+WHERE description ILIKE '%гемоглобин%'
+UNION
+SELECT * FROM fruits
+WHERE description ILIKE '%гемоглобин%';
+
+SELECT * FROM vegetables
+WHERE color IN ('желтый', 'красный')
+UNION
+SELECT * FROM fruits
+WHERE color IN ('желтый', 'красный');
+
+
+
+
