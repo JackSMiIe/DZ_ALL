@@ -1,0 +1,35 @@
+-- Создание таблицы Departments (Кафедры)
+CREATE TABLE Departments (
+    Id SERIAL PRIMARY KEY,
+    Financing DECIMAL NOT NULL CHECK (Financing >= 0),
+    Name VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Создание таблицы Faculties (Факультеты)
+CREATE TABLE Faculties (
+    Id SERIAL PRIMARY KEY,
+    Dean VARCHAR(255) NOT NULL,
+    Name VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Создание таблицы Groups (Группы)
+CREATE TABLE Groups (
+    Id SERIAL PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL UNIQUE,
+    Rating DECIMAL NOT NULL CHECK (Rating BETWEEN 0 AND 5),
+    Year INTEGER NOT NULL CHECK (Year BETWEEN 1 AND 5)
+);
+
+-- Создание таблицы Teachers (Преподаватели)
+CREATE TABLE Teachers (
+    Id SERIAL PRIMARY KEY,
+    EmploymentDate DATE NOT NULL CHECK (EmploymentDate >= '1990-01-01'),
+    IsAssistant BOOLEAN NOT NULL,
+    IsProfessor BOOLEAN NOT NULL,
+    Name VARCHAR(255) NOT NULL,
+    Position VARCHAR(255) NOT NULL,
+    Premium DECIMAL NOT NULL CHECK (Premium >= 0),
+    Salary DECIMAL NOT NULL CHECK (Salary > 0),
+    Surname VARCHAR(255) NOT NULL
+);
+
