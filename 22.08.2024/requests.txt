@@ -1,0 +1,33 @@
+-- Таблица сотрудников
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Phone VARCHAR(15),
+    ProjectID INT,
+    FOREIGN KEY (ProjectID) REFERENCES Projects(ProjectID)
+);
+
+-- Таблица проектов
+CREATE TABLE Projects (
+    ProjectID INT PRIMARY KEY,
+    ProjectName VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Таблица департаментов
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(100) NOT NULL UNIQUE,
+    DepartmentLocation VARCHAR(100) NOT NULL,
+    DepartmentBudget DECIMAL(10, 2) NOT NULL CHECK (DepartmentBudget >= 0)
+);
+
+-- Таблица связи сотрудников и департаментов
+CREATE TABLE EmployeeDepartments (
+    EmployeeID INT,
+    DepartmentID INT,
+    PRIMARY KEY (EmployeeID, DepartmentID),
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
