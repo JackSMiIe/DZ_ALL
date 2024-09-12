@@ -1,0 +1,28 @@
+-- Таблица пользователей
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,                -- Уникальный идентификатор пользователя
+    nickname VARCHAR(255),                -- Никнейм пользователя
+    telegram_id BIGINT UNIQUE NOT NULL,   -- Уникальный идентификатор Telegram
+    status_id INT REFERENCES statuses(id) -- Внешний ключ на таблицу статусов
+);
+
+-- Таблица тарифных планов
+CREATE TABLE plans (
+    id SERIAL PRIMARY KEY,                -- Уникальный идентификатор тарифа
+    name VARCHAR(50) UNIQUE NOT NULL      -- Название тарифа (например, месяц, три месяца, год)
+);
+
+-- Таблица статусов
+CREATE TABLE statuses (
+    id SERIAL PRIMARY KEY,                -- Уникальный идентификатор статуса
+    name VARCHAR(50) UNIQUE NOT NULL      -- Название статуса (например, активен, заблокирован, ожидание)
+);
+
+-- Таблица связей пользователей и их планов
+CREATE TABLE user_plans (
+    user_id INT REFERENCES users(id),     -- Внешний ключ на таблицу users
+    plan_id INT REFERENCES plans(id),     -- Внешний ключ на таблицу plans
+    start_date DATE NOT NULL,             -- Дата начала действия плана
+    end_date DATE NOT NULL,               -- Дата окончания действия плана
+    PRIMARY KEY (user_id, plan_id)        -- Составной первичный ключ
+);
