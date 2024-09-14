@@ -1,0 +1,50 @@
+CREATE DATABASE prodazhi;
+
+CREATE TABLE sellers (
+    seller_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE sales (
+    sale_id SERIAL PRIMARY KEY,
+    customer_id INT REFERENCES customers(customer_id) ON DELETE CASCADE,
+    seller_id INT REFERENCES sellers(seller_id) ON DELETE CASCADE,
+    product_name VARCHAR(100) NOT NULL,
+    price NUMERIC(10, 2) NOT NULL,
+    sale_date DATE NOT NULL
+);
+
+Заполнение данныйми: 
+
+
+INSERT INTO sellers (full_name, email, phone)
+VALUES 
+('Иван Иванов', 'ivanov@example.com', '123-456-7890'),
+('Петр Петров', 'petrov@example.com', '234-567-8901'),
+('Сергей Сергеев', 'sergeev@example.com', '345-678-9012');
+
+
+INSERT INTO customers (full_name, email, phone)
+VALUES 
+('Алексей Алексеев', 'alekseev@example.com', '456-789-0123'),
+('Дмитрий Дмитриев', 'dmitriev@example.com', '567-890-1234'),
+('Ольга Ольгина', 'olgina@example.com', '678-901-2345');
+
+
+INSERT INTO sales (customer_id, seller_id, product_name, price, sale_date)
+VALUES 
+(1, 1, 'Ноутбук', 50000.00, '2024-09-01'),
+(2, 2, 'Смартфон', 30000.00, '2024-09-02'),
+(3, 3, 'Планшет', 20000.00, '2024-09-03'),
+(1, 2, 'Монитор', 15000.00, '2024-09-04'),
+(2, 1, 'Мышь', 1000.00, '2024-09-05');
+

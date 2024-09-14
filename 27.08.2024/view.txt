@@ -1,0 +1,50 @@
+Обновляемое представление для продавцов
+
+CREATE VIEW view_sellers AS
+SELECT seller_id, full_name, email, phone
+FROM sellers
+WITH CHECK OPTION;
+
+Обновляемое представление для покупателей
+
+CREATE VIEW view_customers AS
+SELECT customer_id, full_name, email, phone
+FROM customers
+WITH CHECK OPTION;
+
+Обновляемое представление для информации о продажах конкретного товара
+
+CREATE VIEW view_sales_by_product AS
+SELECT sale_id, customer_id, seller_id, product_name, price, sale_date
+FROM sales
+WHERE product_name = 'Ноутбук'
+WITH CHECK OPTION;
+
+Представление для всех сделок
+
+CREATE VIEW view_all_sales AS
+SELECT s.sale_id, c.full_name AS customer, sl.full_name AS seller, s.product_name, s.price, s.sale_date
+FROM sales s
+JOIN customers c ON s.customer_id = c.customer_id
+JOIN sellers sl ON s.seller_id = sl.seller_id;
+
+Представление для самого активного продавца (по максимальной сумме продаж)
+
+CREATE VIEW view_top_seller AS
+SELECT seller_id, full_name, SUM(price) AS total_sales
+FROM sales s
+JOIN sellers sl ON s.seller_id = sl.seller_id
+GROUP BY seller_id, full_name
+ORDER BY total_sales DESC
+LIMIT 1;
+
+Представление для самого активного покупателя (по максимальной сумме покупок)
+
+CREATE VIEW view_top_customer AS
+SELECT customer_id, full_name, SUM(price) AS total_purchases
+FROM sales s
+JOIN customers c ON s.customer_id = c.customer_id
+GROUP BY customer_id, full_name
+ORDER BY total_purchases DESC
+LIMIT 1;
+
